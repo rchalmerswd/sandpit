@@ -5,7 +5,7 @@ app = Flask(__name__)
 def base():
     return render_template('base.html')
 
-@app.route('/inherits')
+@app.route('/inherits/one')
 def inherits():
     return render_template('inheritone.html')
 
