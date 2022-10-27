@@ -1,11 +1,11 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route("/template.html")
+@app.route("/inherits.html")
 def inherits():
-    return render_template("template.html")
+    return render_template("base.html")
 
-@app.route("/extensions1.html")
+@app.route("/extensions1")
 def extensions_1():
     return render_template("template.html")
 
