@@ -13,3 +13,5 @@ CREATE TABLE IF NOT EXISTS prices
 ''')
 
 conn.commit()
+
+
