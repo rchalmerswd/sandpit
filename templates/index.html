@@ -12,9 +12,12 @@
   </head>
   <body>
     <!-- Work within blocks for repeated elements -->
-    <h1>Title stored in the base template!!!</h1>
-    {% block content %} {% endblock %}
-    <h2>With A Subtitle + More Text</h2>
+    <h1>Inherited From Index.html</h1>
+    {% block content %}
+
+    <h2>Not Inherited</h2>
+    {% endblock %}
+
     <p><a href="inherits/one">Link To Inherited Page</a></p>
   </body>
 </html>
