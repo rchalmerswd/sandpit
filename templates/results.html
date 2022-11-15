@@ -1,0 +1,7 @@
+{% extends "index.html" %} {% block content %}
+<a href=" url_for('index') }}">FlaskApp</a>
+<a href="#">Link</a>
+{% for post in posts %}
+<p>{{post['artist'] }}</p>
+<p>{{post['album'] }}</p>
+{% endfor %} {% endblock %}
