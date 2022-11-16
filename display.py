@@ -1,28 +1,30 @@
-import sqlite3
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
-def get_db_connection():
-    conn = sqlite3.connect('test_database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+import sqlite3
+conn = sqlite3.connect('test_database.db', check_same_thread=False)
+cursor = conn.cursor()
 
-@app.route('/')
-def index():
+#endpoint for search
+@app.route('/', methods=['GET', 'POST'])
+def search():
+    if request.method == "POST":
+        products = request.form['products']
+        # search by author or book
+        cursor.execute("SELECT * from products WHERE artist LIKE %s OR album LIKE %s", (products, products))
+        conn.commit()
+        data = cursor.fetchall()
+        # all in the search box will return all the tuples
+        if len(data) == 0 and products == 'all': 
+         return render_template('index.html', data=data)
     return render_template('index.html')
 
-@app.route('/results/')
-def results():
-    conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM products').fetchall()
-    conn.close()
-    print(posts)
-    return render_template('results.html', posts=posts)
+
 
 @app.route('/inherits/one')
 def inherits():
     return render_template('inheritone.html')
+
 
 
 if __name__ == ("__main__"):

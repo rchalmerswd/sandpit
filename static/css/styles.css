@@ -1,9 +1,13 @@
-h1 {
-  color: red;
-  font-size: 8em;
+body {
+  font-family: Arial;
 }
 
-h2 {
-  color: green;
-  font-size: 8em;
+* {
+  box-sizing: border-box;
 }
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+} /*# sourceMappingURL=styles.css.map */
