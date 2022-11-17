@@ -45,10 +45,10 @@
 
 
         <form class="form-inline my-2 my-lg-0" method="post" action="">
-          <input type="text" name="album">
+          <input type="text" name="album" class="form-control mr-sm-2">
           
-          <button type="submit" id="searchbutton">
-            <i class="fa fa-search">
+          <button type="submit" id="searchbutton" class="btn btn-outline-success my-2 my-sm-0">
+            <i class="fa fa-search">Search
           </button>
         </form>
       </div>
@@ -58,11 +58,11 @@
 
     <p><a href="inherits/one">Link To Inherited Page</a></p>
 
-    
-      
+  
        {% for item in data %}
+        
             <tr>
-                <td> {{item}} by {{item}}</td>
+                <td>{{item}}</td>
                 </br>
             </tr>
         {% endfor %}

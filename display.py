@@ -11,11 +11,10 @@ def search():
     if request.method == "POST":
         album = request.form['album']
         # search by artist or album
-        cursor.execute("SELECT * from products")
+        cursor.execute("SELECT artist, album, year, genre from products WHERE artist = ? ", (album,))
         conn.commit()
         data = cursor.fetchall()
         print (data)
-        print (data[1][1])
         
         return render_template('index.html', data=data)
     return render_template('index.html')
@@ -26,5 +25,4 @@ def inherits():
 
 
 
-if __name__ == ("__main__"):
-    app.run(host='0.0.0.0', port=5001, debug=True)
+if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)
