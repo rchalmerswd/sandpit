@@ -11,7 +11,7 @@ def search():
     if request.method == "POST":
         album = request.form['album']
         # search by artist or album
-        cursor.execute("SELECT artist, album, year, genre from products WHERE artist = ? ", (album,))
+        cursor.execute("SELECT artist, album, year, genre from products WHERE artist LIKE ? OR album LIKE ? OR genre LIKE ? OR year LIKE ? ", (album,album,album,album))
         conn.commit()
         data = cursor.fetchall()
         print (data)
