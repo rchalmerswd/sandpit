@@ -9,17 +9,16 @@ cursor = conn.cursor()
 @app.route('/', methods=['GET', 'POST'])
 def search():
     if request.method == "POST":
-        products = request.form['products']
-        # search by author or book
-        cursor.execute("SELECT * from products WHERE artist LIKE %s OR album LIKE %s", (products, products))
+        album = request.form['album']
+        # search by artist or album
+        cursor.execute("SELECT * from products")
         conn.commit()
         data = cursor.fetchall()
-        # all in the search box will return all the tuples
-        if len(data) == 0 and products == 'all': 
-         return render_template('index.html', data=data)
+        print (data)
+        print (data[1][1])
+        
+        return render_template('index.html', data=data)
     return render_template('index.html')
-
-
 
 @app.route('/inherits/one')
 def inherits():

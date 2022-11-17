@@ -42,21 +42,13 @@
             <a class="nav-link" href="#">Artist</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            method="post"
-          />
-          <button
-            class="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-            onclick=""
-            value="search"
-          >
-            Search
+
+
+        <form class="form-inline my-2 my-lg-0" method="post" action="">
+          <input type="text" name="album">
+          
+          <button type="submit" id="searchbutton">
+            <i class="fa fa-search">
           </button>
         </form>
       </div>
@@ -66,17 +58,11 @@
 
     <p><a href="inherits/one">Link To Inherited Page</a></p>
 
-     <form class="example" method="post" action="" 
-         style="margin:auto;max-width:600px">
-            <input type="text" placeholder="Search Here" name="products">
-            <button type="submit"><i class="fa fa-search"></i>
-            </button>
-        </form>
-        <p></p>
+    
       
        {% for item in data %}
             <tr>
-                <td> {{artist}} by {{album}}</td>
+                <td> {{item}} by {{item}}</td>
                 </br>
             </tr>
         {% endfor %}
