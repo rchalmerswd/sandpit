@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS products
 ([product_id] INTERGER PRIMARY KEY, [product_name] TEXT)
 ''')
 
+
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS prices
 ([product_id] INTEGER PRIMARY KEY, [product_name] TEXT)

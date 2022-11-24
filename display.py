@@ -19,10 +19,9 @@ def search():
         return render_template('index.html', data=data)
     return render_template('index.html')
 
-@app.route('/inherits/one')
-def inherits():
-    return render_template('inheritone.html')
-
+@app.route('/newin/')
+def newin():
+    return render_template('newin.html')
 
 
 if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)

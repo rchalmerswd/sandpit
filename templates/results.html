@@ -1,7 +1,14 @@
 {% extends "index.html" %}
-<a href=" url_for('index') }}">FlaskApp</a>
-<a href="#">Link</a>
 
-results
+{% block content %}
 
-
+{% for item in data %}
+        
+            <tr>
+              <p>Results</p>
+                <td>{{item}}</td>
+                </br>
+            </tr>
+        {% endfor %}
+        
+{% endblock %}
