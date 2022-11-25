@@ -1,14 +1,19 @@
-{% extends "index.html" %}
+{% extends "index.html" %} {% block content %}
 
-{% block content %}
+<table>
+  <tr>
+    <th>Artist</th>
+    <th>Album</th>
+    <th>Year</th>
+  </tr>
 
-{% for item in data %}
-        
-            <tr>
-              <p>Results</p>
-                <td>{{item}}</td>
-                </br>
-            </tr>
-        {% endfor %}
-        
+  {% for item in data %}
+  <tr>
+    <td>{{item[0]}}</td>
+    <td>{{item[1]}}</td>
+    <td>{{item[2]}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
 {% endblock %}
