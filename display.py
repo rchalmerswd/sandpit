@@ -35,6 +35,7 @@ def login():
         password = request.form['password']
         cursor.execute('SELECT * FROM accounts WHERE username LIKE ? AND password LIKE ?', (username, password,))
         account = cursor.fetchone()
+        print (account)
         if account:
             session['loggedin'] = True
             msg = 'Logged in successfully !'
