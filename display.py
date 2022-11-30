@@ -81,14 +81,27 @@ def register():
     return render_template('register.html', msg = msg)
 
 
-@app.route('/login/home')
+@app.route('/login/home', methods =['GET', 'POST'])
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
         return render_template('home.html')
-  
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
+
+def add():
+    msg = ''
+    if request.method == 'POST':
+        artist = request.form['artist']
+        album = request.form['album']
+        year = request.form['year']
+        cursor.execute('INSERT INTO collection VALUES (?, ?, ?)', (artist, album))
+        conn.commit()
+        print (artist, album, year)
+        msg = 'Added To Collection'
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
+    return render_template('home.html', msg = msg)
 
 if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)
