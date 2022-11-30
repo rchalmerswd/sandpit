@@ -40,11 +40,20 @@ def login():
         print (account)
         if account:
             session['loggedin'] = True
-            msg = 'Logged in successfully !'
-            return render_template('login.html', msg = msg)
+            return redirect(url_for('home'))
         else:
             msg = 'Incorrect username / password !'
     return render_template('login.html', msg = msg)
+
+
+@app.route('/pythonlogin/logout')
+def logout():
+    # Remove session data, this will log the user out
+   session.pop('loggedin', None)
+   session.pop('id', None)
+   session.pop('username', None)
+   # Redirect to login page
+   return redirect(url_for('login'))
 
 @app.route('/register', methods =['GET', 'POST'])
 def register():
@@ -66,10 +75,20 @@ def register():
         else:
             cursor.execute('INSERT INTO accounts VALUES (?, ?, ?)', (username, password, email))
             conn.commit()
-            msg = 'You have successfully registered !'
+            msg = 'You have successfully registered, now you can log in!'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
 
+
+@app.route('/login/home')
+def home():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # User is loggedin show them the home page
+        return render_template('home.html')
+  
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
 
 if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)
