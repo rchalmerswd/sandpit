@@ -38,13 +38,10 @@
           <li class="nav-item active">
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/newin">New In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Log In</a>
+            <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
           </li>
            <li class="nav-item">
             <a class="nav-link" href="#">Wishlist</a>
@@ -55,14 +52,6 @@
 
         </ul>
 
-
-        <form class="form-inline my-2 my-lg-0" method="post" action="">
-          <input type="text" name="album" class="form-control mr-sm-2">
-          
-          <button type="submit" id="searchbutton" class="btn btn-outline-success my-2 my-sm-0">
-            <i class="fa fa-search">Search
-          </button>
-        </form>
       </div>
     </nav>
 
@@ -88,6 +77,20 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<div id="searchbarcontainer">
+<form class="form-inline my-2 my-lg-0" method="post" action="">
+          <input type="text" name="album" class="form-control mr-sm-2">
+          
+          <button type="submit" id="searchbutton" class="btn btn-outline-success my-2 my-sm-0">
+            <i class="fa fa-search">Search
+          </button>
+        </form>
+
+
+  </div>
+
+  <div id="resultstable">
         <table>
   <tr>
     <th>Artist</th>
@@ -104,7 +107,7 @@
   {% endfor %}
 </table>
 
-
+</div>
 {% endblock %}
 
   <footer class="py-3 my-4 bg-dark">
