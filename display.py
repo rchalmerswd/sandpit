@@ -46,7 +46,7 @@ def login():
     return render_template('login.html', msg = msg)
 
 
-@app.route('/pythonlogin/logout')
+@app.route('/logout/')
 def logout():
     # Remove session data, this will log the user out
    session.pop('loggedin', None)
@@ -81,7 +81,7 @@ def register():
     return render_template('register.html', msg = msg)
 
 
-@app.route('/login/home', methods =['GET', 'POST'])
+@app.route('/home', methods =['GET', 'POST'])
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
@@ -96,7 +96,7 @@ def add():
         artist = request.form['artist']
         album = request.form['album']
         year = request.form['year']
-        cursor.execute('INSERT INTO collection VALUES (?, ?, ?)', (artist, album))
+        cursor.execute('INSERT INTO collection VALUES (?, ?, ?)', (artist, album, year))
         conn.commit()
         print (artist, album, year)
         msg = 'Added To Collection'
