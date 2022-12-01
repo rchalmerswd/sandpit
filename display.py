@@ -11,9 +11,9 @@ app.secret_key = 'supersecretpassword'
 @app.route('/', methods=['GET', 'POST'])
 def search():
     if request.method == "POST":
-        album = request.form['album']
+        searchbar = request.form['searchbar']
         # search by artist or album
-        cursor.execute("SELECT artist, album, year, genre from products WHERE artist LIKE ? OR album LIKE ? OR genre LIKE ? OR year LIKE ? ", (album,album,album,album))
+        cursor.execute("SELECT artist, album, year, genre from products WHERE artist LIKE ? OR album LIKE ? OR genre LIKE ? OR year LIKE ? ", (searchbar,searchbar,searchbar,searchbar))
         conn.commit()
         data = cursor.fetchall()
         print (data)
@@ -37,7 +37,6 @@ def login():
         password = request.form['password']
         cursor.execute('SELECT * FROM accounts WHERE username = ? AND password = ?', (username, password,))
         account = cursor.fetchone()
-        print (account)
         if account:
             session['loggedin'] = True
             return redirect(url_for('home'))
@@ -46,7 +45,8 @@ def login():
     return render_template('login.html', msg = msg)
 
 
-@app.route('/logout/')
+@app.route('/lo
+gout/')
 def logout():
     # Remove session data, this will log the user out
    session.pop('loggedin', None)
@@ -90,18 +90,18 @@ def home():
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
+@app.route('/add', methods =['GET', 'POST'])
 def add():
     msg = ''
     if request.method == 'POST':
         artist = request.form['artist']
         album = request.form['album']
-        year = request.form['year']
-        cursor.execute('INSERT INTO collection VALUES (?, ?, ?)', (artist, album, year))
+        cursor.execute('INSERT INTO collection (artist, album) VALUES (?, ?)', (artist, album))
         conn.commit()
-        print (artist, album, year)
+        print (artist, album)
         msg = 'Added To Collection'
-    elif request.method == 'POST':
-        msg = 'Please fill out the form !'
+    elif request.method == 'GET':
+        return render_template('home.html')
     return render_template('home.html', msg = msg)
 
 if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)
