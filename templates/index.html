@@ -40,6 +40,7 @@
     <th>Artist</th>
     <th>Album</th>
     <th>Year</th>
+    <th>Genre</th>
   </tr>
 
   {% for item in data %}
@@ -47,6 +48,7 @@
     <td>{{item[0]}}</td>
     <td>{{item[1]}}</td>
     <td>{{item[2]}}</td>
+    <td>{{item[3]}}</td>
   </tr>
   {% endfor %}
 </table>
