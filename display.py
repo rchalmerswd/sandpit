@@ -45,8 +45,7 @@ def login():
     return render_template('login.html', msg = msg)
 
 
-@app.route('/lo
-gout/')
+@app.route('/logout/')
 def logout():
     # Remove session data, this will log the user out
    session.pop('loggedin', None)
@@ -103,5 +102,16 @@ def add():
     elif request.method == 'GET':
         return render_template('home.html')
     return render_template('home.html', msg = msg)
+
+
+@app.route('/collection', methods=['GET', 'POST'])
+def collection():
+        cursor.execute("SELECT * FROM collection")
+        conn.commit()
+        data = cursor.fetchall()
+        print (data)
+        return render_template('home.html', data=data)
+    
+
 
 if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)

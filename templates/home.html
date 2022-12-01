@@ -1,5 +1,4 @@
-{% extends "index.html" %} {% block content %}
-
+{% extends "base.html" %} {% block body %}
 <h1>Welcome back! {{ username }}</h1>
 
 <div class="collection">
@@ -32,4 +31,37 @@
 
 <div class="msg">{{ msg }}</div>
 
+  <div id="wishlistsection">
+  <h2> View Wishlist:</h2>
+  <button type="button" onclick="window.location.href='/collection';" id="collectionbutton" class="btn btn-outline-success my-2 my-sm-0">
+            <i class="fa fa-search">View Wishlist
+          </button>
+</div>
+
+  <div id="homeresultstable">
+        <table>
+  <tr>
+    <th>Artist</th>
+    <th>Album</th>
+    <th>Year</th>
+  </tr>
+
+  {% for item in data %}
+  <tr>
+    <td>{{item[0]}}</td>
+    <td>{{item[1]}}</td>
+    <td>{{item[2]}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}
