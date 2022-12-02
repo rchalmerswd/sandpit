@@ -30,7 +30,7 @@ def loginextend():
 
 
 # Log in/resgister function inspired by https://codeshack.io/login-system-python-flask-mysql/#authenticatinguserswithpython
-@app.route('/login/', methods=['GET', 'POST'])s
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     msg = ''
     # Check if "username" and "password" POST requests exist (user submitted form)
