@@ -105,6 +105,49 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+#searchbarcontainer {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#searchbar {
+  width: 300px;
+}
+
+#resultstable {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 300px;
+}
+
+#homeresultstable {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+#wishlistsection {
+  padding-left: 20px;
+}
+
+.collection {
+  display: flex;
+  padding: 20px;
+}
+#submitbutton {
+  background-color: #0b7dda;
+  color: white;
+}
+
+h1 {
+  padding-left: 20px;
+}
+
+// Log In/Register Styling from https://codeshack.io/login-system-python-flask-mysql/#authenticatinguserswithpython
+
 .login,
 .register {
   width: 400px;
@@ -214,45 +257,4 @@ body.loggedin {
 .content > div p {
   padding: 5px;
   margin: 0 0 10px 0;
-}
-
-#searchbarcontainer {
-  padding-top: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-#searchbar {
-  width: 300px;
-}
-
-#resultstable {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-  padding-bottom: 300px;
-}
-
-#homeresultstable {
-  padding-top: 20px;
-  padding-left: 20px;
-}
-
-#wishlistsection {
-  padding-left: 20px;
-}
-
-.collection {
-  display: flex;
-  padding: 20px;
-}
-#submitbutton {
-  background-color: #0b7dda;
-  color: white;
-}
-
-h1 {
-  padding-left: 20px;
 }

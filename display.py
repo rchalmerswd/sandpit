@@ -28,7 +28,9 @@ def newin():
 def loginextend():
     return render_template('login.html')
 
-@app.route('/login/', methods=['GET', 'POST'])
+
+# Log in/resgister function inspired by https://codeshack.io/login-system-python-flask-mysql/#authenticatinguserswithpython
+@app.route('/login/', methods=['GET', 'POST'])s
 def login():
     msg = ''
     # Check if "username" and "password" POST requests exist (user submitted form)
