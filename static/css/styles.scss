@@ -116,9 +116,10 @@ tr:nth-child(even) {
   width: 300px;
 }
 
-#resultstable {
+#results-table {
   width: 100%;
   display: flex;
+  display: none;
   justify-content: center;
   padding-top: 50px;
   padding-bottom: 300px;

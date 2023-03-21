@@ -13,12 +13,16 @@
       rel="stylesheet"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"
       rel="stylesheet"
     />
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    ></script>
+
     <title>Master Template</title>
   </head>
 
@@ -36,7 +40,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="/">Discogs</a>
+        <a class="navbar-brand" href="/">Feed Your Head Records</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active"></li>
           <li class="nav-item">
@@ -52,6 +56,7 @@
             <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
           </li>
         </ul>
+        <h1>Logo</h1>
       </div>
     </nav>
     {% block body %}{% endblock %}
