@@ -21,9 +21,19 @@ def search():
         return render_template('index.html', data=data)
     return render_template('index.html')
 
-@app.route('/newin', methods=['GET', 'POST'])
-def newin():
-    return render_template('newin.html')
+@app.route('/results', methods=['GET', 'POST'])
+def results():
+    if request.method == "POST":
+        searchbar = request.form['searchbar']
+        # search by artist or album
+        cursor.execute("SELECT artist, album, year, genre from products WHERE artist LIKE ? OR album LIKE ? OR genre LIKE ? OR year LIKE ? ", (searchbar,searchbar,searchbar,searchbar))
+        conn.commit()
+        data = cursor.fetchall()
+        print (data)
+        
+        
+        return render_template('results.html', data=data)
+    return render_template('results.html')
 
 def loginextend():
     return render_template('login.html')
@@ -113,7 +123,6 @@ def collection():
         data = cursor.fetchall()
         print (data)
         return render_template('home.html', data=data)
-    
 
 
 if __name__ == ("__main__"):    app.run(host='0.0.0.0', port=5001, debug=True)

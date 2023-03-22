@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block body %}
 
+<!--Carousel Image Gallery-->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -44,6 +45,7 @@
   </a>
 </div>
 
+<!-- Search Bar/Search Button
 <div id="searchbarcontainer">
   <form class="form-inline my-2 my-lg-0" method="post" action="">
     <input
@@ -53,254 +55,471 @@
       class="form-control mr-sm-2"
       placeholder="What Are You Looking For?"
     />
-    <button
-      type="submit"
-      class="btn btn-primary"
-      buttonid="toggle-button"
-      onclick="myFunction()"
-    >
+    <button type="submit" class="btn btn-primary" onclick="toggleTable()">
       Search
     </button>
   </form>
-</div>
+</div> -->
 
+<!--Navigation Toggle Menu-->
+<ul class="nav nav-tabs" id="togglemenu">
+  <li class="nav-items-toggle">
+    <a class="nav-link active" onclick="openNewin()">New In</a>
+  </li>
+  <li class="nav-items-toggle">
+    <a class="nav-link active" onclick="openMostPopular()">Most Popular</a>
+  </li>
+  <li class="nav-items-toggle">
+    <a class="nav-link active" onclick="openEssentials()">Essentials</a>
+  </li>
+</ul>
 
-<div id="results-table">
-  <table>
-    <tr>
-      <th>Artist</th>
-      <th>Album</th>
-      <th>Year</th>
-      <th>Genre</th>
-    </tr>
+<!--Results Table From Database-->
+<table id="myTable">
+  <tr>
+    <th>Artist</th>
+    <th>Album</th>
+    <th>Year</th>
+    <th>Genre</th>
+  </tr>
 
-    {% for item in data %}
-    <tr>
-      <td>{{item[0]}}</td>
-      <td>{{item[1]}}</td>
-      <td>{{item[2]}}</td>
-      <td>{{item[3]}}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  </div>
-  <div id="imagegallery">
-    <section class="pt-5 pb-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <h3 class="mb-3">New In</h3>
-          </div>
-          <div class="col-6 text-right">
-            <a
-              class="btn btn-primary mb-3 mr-1"
-              href="#carouselExampleIndicators2"
-              role="button"
-              data-slide="prev"
-            >
-              <i class="fa fa-arrow-left"></i>
-            </a>
-            <a
-              class="btn btn-primary mb-3"
-              href="#carouselExampleIndicators2"
-              role="button"
-              data-slide="next"
-            >
-              <i class="fa fa-arrow-right"></i>
-            </a>
-          </div>
-          <div class="col-12">
-            <div
-              id="carouselExampleIndicators2"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="row">
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
+  {% for item in data %}
+  <tr>
+    <td>{{item[0]}}</td>
+    <td>{{item[1]}}</td>
+    <td>{{item[2]}}</td>
+    <td>{{item[3]}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<!--New In Image Gallery-->
+<div id="newinimagegallery">
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-3">New In</h3>
+        </div>
+        <div class="col-6 text-right">
+          <a
+            class="btn btn-primary mb-3 mr-1"
+            href="#carouselExampleIndicators2"
+            role="button"
+            data-slide="prev"
+          >
+            <i class="fa fa-arrow-left"></i>
+          </a>
+          <a
+            class="btn btn-primary mb-3"
+            href="#carouselExampleIndicators2"
+            role="button"
+            data-slide="next"
+          >
+            <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="col-12">
+          <div
+            id="carouselExampleIndicators2"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/thewho.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">The WHO: Quadrophenia</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/letitbe.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">The Beatles: Let It Be</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ee8417f0ea2a50d53a12665820b54e23"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1532777946373-b6783242f211?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=8ac55cf3a68785643998730839663129"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                      <div class="card">
-                        <img
-                          class="img-fluid"
-                          alt="100%x280"
-                          src="https://images.unsplash.com/photo-1532763303805-529d595877c5?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=5ee4fd5d19b40f93eadb21871757eda6"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title">Special title treatment</h4>
-                          <p class="card-text">
-                            With supporting text below as a natural lead-in to
-                            additional content.
-                          </p>
-                        </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/jimihendrix.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Jimi Hendrix: Electric Ladyland</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/masterplan.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Oasis: The Masterplan</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/biffy.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Biffy Clryo: Only Revolutions</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/revolver.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">The Beatles: Revolver</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  </section>
 </div>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-  crossorigin="anonymous"
-></script>
-<script
-  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-  crossorigin="anonymous"
-></script>
+
+<!--Most Popular Image Gallery-->
+<div id="mostpopularimagegallery">
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-3">Most Popular</h3>
+        </div>
+        <div class="col-6 text-right">
+          <a
+            class="btn btn-primary mb-3 mr-1"
+            href="#carouselExampleIndicators3"
+            role="button"
+            data-slide="prev"
+          >
+            <i class="fa fa-arrow-left"></i>
+          </a>
+          <a
+            class="btn btn-primary mb-3"
+            href="#carouselExampleIndicators3"
+            role="button"
+            data-slide="next"
+          >
+            <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="col-12">
+          <div
+            id="carouselExampleIndicators3"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                     <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/fleetwood.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Fleetwood Mac: Rumours</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/paramore.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Paramore: This Is Why</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/phoebe.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Phoebe Bridgers: Punisher</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/dualipa.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Dua Lipa: Future Nostalgia</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/daftpunk.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Daft Punk: Discovery</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/killers.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">The Killers: Hot Fuss</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  </section>
+</div>
+
+<!--Essentials Image Gallery-->
+<div id="essentialsimagegallery">
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-3">Essentials</h3>
+        </div>
+        <div class="col-6 text-right">
+          <a
+            class="btn btn-primary mb-3 mr-1"
+            href="#carouselExampleIndicators4"
+            role="button"
+            data-slide="prev"
+          >
+            <i class="fa fa-arrow-left"></i>
+          </a>
+          <a
+            class="btn btn-primary mb-3"
+            href="#carouselExampleIndicators4"
+            role="button"
+            data-slide="next"
+          >
+            <i class="fa fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="col-12">
+          <div
+            id="carouselExampleIndicators4"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/ledzeppelin.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Led Zeppelin: Self Titled</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/sabbath.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Black Sabbath: Paranoid</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/ledzeppelin2.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Led Zeppelin: Led Zeppelin II</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                     <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/joni.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">Joni Mitchell: Blue</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/beachboys.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">The Beach Boys: Pet Sounds </p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <div class="card">
+                      <img
+                        class="img-fluid"
+                        alt="100%x280"
+                        src="/static/images/trex.webp"
+                      />
+                      <div class="card-body">
+                        <p class="card-text">T.Rex: Electric Warrior</p>
+                        <button type="button" class="btn btn-success">
+                          Add To Basket
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  </section>
+</div>
+
+<!--Javascript-->
 
 <script>
-  function myFunction() {
-    var x = document.getElementById("results-table");
+  function openNewin() {
+    var x = document.getElementById("newinimagegallery");
     if (x.style.display === "none") {
-      x.style.display = "flex";
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  function openMostPopular() {
+    var x = document.getElementById("mostpopularimagegallery");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  function openEssentials() {
+    var x = document.getElementById("essentialsimagegallery");
+    if (x.style.display === "none") {
+      x.style.display = "block";
     } else {
       x.style.display = "none";
     }
